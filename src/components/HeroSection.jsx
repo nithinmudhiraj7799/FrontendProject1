@@ -1,17 +1,20 @@
 // src/components/HeroSection.jsx
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 const HeroSection = () => {
   const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(true); // Initially true because autoplay is enabled
 
   const toggleVideo = () => {
     const video = videoRef.current;
     if (video) {
       if (video.paused) {
         video.play();
+        setIsPlaying(true);
         console.log("Video playing");
       } else {
         video.pause();
+        setIsPlaying(false);
         console.log("Video paused");
       }
     }
@@ -27,10 +30,9 @@ const HeroSection = () => {
         loop
         muted
         playsInline
-        controls 
+        // controls removed to use only custom play/pause
       />
 
-    
       <div className="absolute inset-0 flex flex-col justify-center items-center text-white z-10">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to Tech Tomorrow</h1>
         <p className="text-lg md:text-2xl mb-6 text-center px-4 md:px-0">
@@ -40,7 +42,7 @@ const HeroSection = () => {
           onClick={toggleVideo}
           className="bg-white text-black px-6 py-2 rounded hover:bg-gray-300 focus:outline-none"
         >
-          Play/Pause Video
+          {isPlaying ? "Pause Video" : "Play Video"}
         </button>
       </div>
     </div>
