@@ -27,11 +27,10 @@ const HeroSection = () => {
         loop
         muted
         playsInline
-        controls // <-- add native controls for testing
+        controls 
       />
 
-      {/* Overlay is commented out for testing visibility */}
-      {/* <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white z-10"> */}
+    
       <div className="absolute inset-0 flex flex-col justify-center items-center text-white z-10">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to Tech Tomorrow</h1>
         <p className="text-lg md:text-2xl mb-6 text-center px-4 md:px-0">
