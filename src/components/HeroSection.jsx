@@ -6,24 +6,33 @@ const HeroSection = () => {
 
   const toggleVideo = () => {
     const video = videoRef.current;
-    if (video.paused) {
-      video.play();
-    } else {
-      video.pause();
+    if (video) {
+      if (video.paused) {
+        video.play();
+        console.log("Video playing");
+      } else {
+        video.pause();
+        console.log("Video paused");
+      }
     }
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden bg-black">
       <video
         ref={videoRef}
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        src="/futuristic.mp4"
+        src="/13384288_1920_1080_60fps.mp4"
         autoPlay
         loop
         muted
-      ></video>
-      <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white z-10">
+        playsInline
+        controls // <-- add native controls for testing
+      />
+
+      {/* Overlay is commented out for testing visibility */}
+      {/* <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white z-10"> */}
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-white z-10">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to Tech Tomorrow</h1>
         <p className="text-lg md:text-2xl mb-6 text-center px-4 md:px-0">
           Discover the Future of AI Technology

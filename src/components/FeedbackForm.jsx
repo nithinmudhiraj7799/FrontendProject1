@@ -9,29 +9,29 @@ const FeedbackForm = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      setStatus("Please fill in all fields.");
-      return;
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!form.name || !form.email || !form.message) {
+    setStatus("Please fill in all fields.");
+    return;
+  }
+  try {
+    const response = await fetch("https://tech-tomorrow-page-2.onrender.com/api/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      setStatus("Feedback submitted successfully!");
+      setForm({ name: "", email: "", message: "" });
+    } else {
+      setStatus(data.message || "Error submitting feedback.");
     }
-    try {
-      const response = await fetch("http://localhost:5000/api/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setStatus("Feedback submitted successfully!");
-        setForm({ name: "", email: "", message: "" });
-      } else {
-        setStatus(data.message || "Error submitting feedback.");
-      }
-    } catch (error) {
-      setStatus("Something went wrong. Please try again later.");
-    }
-  };
+  } catch (error) {
+    setStatus("Something went wrong. Please try again later.");
+  }
+};
 
   return (
     <section className="bg-gray-800 text-white py-16 px-6 md:px-20">
