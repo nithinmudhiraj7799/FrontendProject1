@@ -16,7 +16,7 @@ const FeedbackForm = () => {
     return;
   }
   try {
-    const response = await fetch("https://tech-tomorrow-page-2.onrender.com/api/feedback", {
+    const response = await fetch("https://my-startup-assignment.onrender.com/api/feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
